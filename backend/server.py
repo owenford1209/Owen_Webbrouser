@@ -420,7 +420,7 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-@api_router.get("/")
+@app.get("/")
 async def root():
     return {"message": "Iowa House Prices Dashboard API"}
 
