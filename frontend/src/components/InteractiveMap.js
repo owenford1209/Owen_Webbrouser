@@ -87,6 +87,29 @@ const InteractiveMap = () => {
     '$175,001 or more'
   ];
 
+  // Add fixed set of markers from train.csv
+  const fixedMarkers = [
+    { price: 180000, lat: 41.374540118847364, lon: -93.47524356836776 },
+    { price: 129500, lat: 41.374540118847364, lon: -93.47524356836776 },
+    { price: 168500, lat: 41.374540118847364, lon: -93.47524356836776 },
+    { price: 189000, lat: 41.374540118847364, lon: -93.47524356836776 },
+    { price: 147000, lat: 41.374540118847364, lon: -93.47524356836776 },
+    { price: 85000, lat: 41.950714306409914, lon: -93.56805498135789 },
+    { price: 162000, lat: 41.950714306409914, lon: -93.56805498135789 },
+    { price: 118000, lat: 41.7319939418114, lon: -93.70877085980196 },
+    { price: 154000, lat: 41.7319939418114, lon: -93.70877085980196 },
+    { price: 124000, lat: 41.7319939418114, lon: -93.70877085980196 },
+  ];
+
+  // Helper to color code by price
+  const getColorByPrice = (price) => {
+    if (price <= 100000) return '#3b82f6'; // Blue
+    if (price <= 125000) return '#06b6d4'; // Teal
+    if (price <= 150000) return '#10b981'; // Green
+    if (price <= 175000) return '#059669'; // Dark Green
+    return '#f97316'; // Orange
+  };
+
   if (loading) {
     return (
       <div className="bg-white rounded-lg shadow-lg p-6">
@@ -146,6 +169,7 @@ const InteractiveMap = () => {
           />
           <MapController housePrices={filteredHousePrices} />
           
+          {/* Existing house price markers */}
           {filteredHousePrices.map((house) => (
             <CircleMarker
               key={house.id}
@@ -166,6 +190,29 @@ const InteractiveMap = () => {
                   </p>
                   <p className="text-sm text-gray-500">
                     Range: {house.price_range}
+                  </p>
+                </div>
+              </Popup>
+            </CircleMarker>
+          ))}
+          {/* Fixed markers from train.csv */}
+          {fixedMarkers.map((marker, idx) => (
+            <CircleMarker
+              key={`fixed-${idx}`}
+              center={[marker.lat, marker.lon]}
+              radius={8}
+              fillColor={getColorByPrice(marker.price)}
+              color="#222"
+              weight={2}
+              opacity={1}
+              fillOpacity={0.7}
+            >
+              <Popup>
+                <div className="p-2">
+                  <h3 className="font-semibold text-lg">Train.csv Marker</h3>
+                  <p className="text-gray-600">Lat: {marker.lat.toFixed(5)}, Lon: {marker.lon.toFixed(5)}</p>
+                  <p className="text-lg font-bold text-green-600">
+                    {formatPrice(marker.price)}
                   </p>
                 </div>
               </Popup>

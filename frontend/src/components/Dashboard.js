@@ -117,50 +117,172 @@ const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, setIsOpen }) => {
 const Overview = () => {
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Welcome to Iowa Dashboard</h2>
-        <p className="text-gray-600 mb-6">
-          Explore Iowa's real estate market and connect with the community through our interactive platform.
-        </p>
+      {/* Hero Section with Background Image */}
+      <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg shadow-lg overflow-hidden">
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="relative p-8 text-white">
+          <h2 className="text-3xl font-bold mb-4">Welcome to Iowa Dashboard</h2>
+          <p className="text-xl mb-6 opacity-90">
+            Discover Iowa's finest properties and connect with the community through our interactive platform.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+              <span className="text-sm font-medium">🏠 1,000+ Properties</span>
+            </div>
+            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+              <span className="text-sm font-medium">🗺️ 30+ Cities</span>
+            </div>
+            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
+              <span className="text-sm font-medium">💰 Best Prices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature Cards with Images */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+            <div className="text-center text-white">
+              <MagnifyingGlassIcon className="h-16 w-16 mx-auto mb-2" />
+              <h3 className="text-lg font-semibold">House Search</h3>
+            </div>
+          </div>
+          <div className="p-6">
+            <p className="text-gray-600 text-sm">Find your perfect home by price, location, and features with our advanced search tools.</p>
+          </div>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-            <div className="flex items-center">
-              <MagnifyingGlassIcon className="h-8 w-8 text-blue-600" />
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-blue-900">House Search</h3>
-                <p className="text-blue-700 text-sm">Find your perfect home by price & features</p>
-              </div>
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+            <div className="text-center text-white">
+              <MapIcon className="h-16 w-16 mx-auto mb-2" />
+              <h3 className="text-lg font-semibold">Interactive Map</h3>
             </div>
           </div>
-          
-          <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-            <div className="flex items-center">
-              <MapIcon className="h-8 w-8 text-green-600" />
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-green-900">Interactive Map</h3>
-                <p className="text-green-700 text-sm">Explore house prices across Iowa cities</p>
-              </div>
+          <div className="p-6">
+            <p className="text-gray-600 text-sm">Explore house prices across Iowa cities with our interactive map visualization.</p>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+            <div className="text-center text-white">
+              <ChatBubbleLeftRightIcon className="h-16 w-16 mx-auto mb-2" />
+              <h3 className="text-lg font-semibold">Activity Feed</h3>
             </div>
           </div>
-          
-          <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
-            <div className="flex items-center">
-              <ChatBubbleLeftRightIcon className="h-8 w-8 text-purple-600" />
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-purple-900">Activity Feed</h3>
-                <p className="text-purple-700 text-sm">Share and discover community insights</p>
-              </div>
+          <div className="p-6">
+            <p className="text-gray-600 text-sm">Share and discover community insights about neighborhoods and properties.</p>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="h-48 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+            <div className="text-center text-white">
+              <UserCircleIcon className="h-16 w-16 mx-auto mb-2" />
+              <h3 className="text-lg font-semibold">Profile</h3>
             </div>
           </div>
-          
-          <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
-            <div className="flex items-center">
-              <UserCircleIcon className="h-8 w-8 text-orange-600" />
-              <div className="ml-4">
-                <h3 className="text-lg font-semibold text-orange-900">Profile</h3>
-                <p className="text-orange-700 text-sm">Manage your account settings</p>
+          <div className="p-6">
+            <p className="text-gray-600 text-sm">Manage your account settings and track your property preferences.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Photo Gallery Section */}
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6">Iowa Real Estate Data Insights</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="h-48 bg-gray-100 flex items-center justify-center">
+              <img 
+                src="/images/heat-map.png" 
+                alt="Heat Map of House Prices" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden flex-col items-center justify-center text-center p-4">
+                <div className="text-4xl mb-2">🔥</div>
+                <h4 className="text-lg font-semibold text-gray-900">Heat Map</h4>
+                <p className="text-gray-600 text-sm">Price distribution across Iowa</p>
               </div>
+            </div>
+            <div className="p-4 bg-white">
+              <h4 className="text-lg font-semibold text-gray-900">Price Heat Map</h4>
+              <p className="text-gray-600 text-sm">Visual representation of house price distribution across Iowa neighborhoods</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="h-48 bg-gray-100 flex items-center justify-center">
+              <img 
+                src="/images/lotshape-analysis.png" 
+                alt="Lot Shape vs Sale Price Analysis" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden flex-col items-center justify-center text-center p-4">
+                <div className="text-4xl mb-2">📊</div>
+                <h4 className="text-lg font-semibold text-blue-900">Lot Shape Analysis</h4>
+                <p className="text-blue-700 text-sm">Lot shape vs sale price correlation</p>
+              </div>
+            </div>
+            <div className="p-4 bg-white">
+              <h4 className="text-lg font-semibold text-gray-900">Lot Shape Impact</h4>
+              <p className="text-gray-600 text-sm">How lot shape affects property values in different neighborhoods</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="h-48 bg-gray-100 flex items-center justify-center">
+              <img 
+                src="/images/Yearly Sale price .png" 
+                alt="Yearly Sale Price" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden flex-col items-center justify-center text-center p-4">
+                <div className="text-4xl mb-2">📈</div>
+                <h4 className="text-lg font-semibold text-green-900">Yearly Sale Price</h4>
+                <p className="text-green-700 text-sm">Trends in sale prices over the years</p>
+              </div>
+            </div>
+            <div className="p-4 bg-white">
+              <h4 className="text-lg font-semibold text-gray-900">Yearly Sale Price</h4>
+              <p className="text-gray-600 text-sm">How house prices have changed year by year in Iowa</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+            <div className="h-48 bg-gray-100 flex items-center justify-center">
+              <img 
+                src="/images/Sale Price Quality .png" 
+                alt="Sale Price Quality" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden flex-col items-center justify-center text-center p-4">
+                <div className="text-4xl mb-2">⭐</div>
+                <h4 className="text-lg font-semibold text-purple-900">Sale Price Quality</h4>
+                <p className="text-purple-700 text-sm">Quality impact on sale price</p>
+              </div>
+            </div>
+            <div className="p-4 bg-white">
+              <h4 className="text-lg font-semibold text-gray-900">Sale Price Quality</h4>
+              <p className="text-gray-600 text-sm">Relationship between property quality and sale prices</p>
             </div>
           </div>
         </div>
@@ -210,6 +332,22 @@ const Overview = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Call to Action Section */}
+      <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg p-8 text-center text-white">
+        <h3 className="text-2xl font-bold mb-4">Ready to Find Your Dream Home?</h3>
+        <p className="text-lg mb-6 opacity-90">
+          Start exploring Iowa's real estate market today with our powerful search tools and interactive map.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <button className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Start House Search
+          </button>
+          <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+            View Map
+          </button>
         </div>
       </div>
     </div>
