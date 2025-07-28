@@ -3,12 +3,14 @@ services:
     name: backend
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn server:app --host 0.0.0.0 --port 8000
+    startCommand: uvicorn server:app --host 0.0.0.0 --port=$PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
       - key: MONGODB_URI
-        value: MONGODB_URI = "mongodb+srv://<user>:<pass>@cluster.mongodb.net/myDB?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
+        value: "mongodb+srv://<user>:<pass>@cluster.mongodb.net/myDB?retryWrites=true&w=majority"
+      - key: DB_NAME
+        value: OwenCluster
     plan: free
     rootDir: backend
     autoDeploy: true
