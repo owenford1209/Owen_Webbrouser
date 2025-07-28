@@ -167,72 +167,60 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
 
 # Authentication Routes
-@api_router.post("/auth/register", response_model=Token)
-async def register(user_data: UserCreate):
-    # Validate input
-    if not user_data.email and not user_data.phone:
-        raise HTTPException(status_code=400, detail="Either email or phone is required")
-    
-    if user_data.email and not is_valid_email(user_data.email):
-        raise HTTPException(status_code=400, detail="Invalid email format")
-    
-    if user_data.phone and not is_valid_phone(user_data.phone):
-        raise HTTPException(status_code=400, detail="Invalid phone format")
-    
-    # Check if user already exists
-    existing_user = None
-    if user_data.email:
-        existing_user = await db.users.find_one({"email": user_data.email})
-    if not existing_user and user_data.phone:
-        existing_user = await db.users.find_one({"phone": user_data.phone})
-    
-    if existing_user:
-        raise HTTPException(status_code=400, detail="User already exists")
-    
-    # Create new user
-    hashed_password = hash_password(user_data.password)
-    user = User(
-        email=user_data.email,
-        phone=user_data.phone,
-        name=user_data.name
-    )
-    
-    user_dict = user.dict()
-    user_dict["password"] = hashed_password
-    
-    await db.users.insert_one(user_dict)
-    
-    # Create access token
-    access_token = create_access_token(data={"sub": user.id})
-    
-    return Token(
-        access_token=access_token,
-        token_type="bearer",
-        user=UserResponse(**user.dict())
-    )
+# @api_router.post("/auth/register", response_model=Token)
+# async def register(user_data: UserCreate):
+#     # Validate input
+#     if not user_data.email and not user_data.phone:
+#         raise HTTPException(status_code=400, detail="Either email or phone is required")
+#     if user_data.email and not is_valid_email(user_data.email):
+#         raise HTTPException(status_code=400, detail="Invalid email format")
+#     if user_data.phone and not is_valid_phone(user_data.phone):
+#         raise HTTPException(status_code=400, detail="Invalid phone format")
+#     # Check if user already exists
+#     existing_user = None
+#     if user_data.email:
+#         existing_user = await db.users.find_one({"email": user_data.email})
+#     if not existing_user and user_data.phone:
+#         existing_user = await db.users.find_one({"phone": user_data.phone})
+#     if existing_user:
+#         raise HTTPException(status_code=400, detail="User already exists")
+#     # Create new user
+#     hashed_password = hash_password(user_data.password)
+#     user = User(
+#         email=user_data.email,
+#         phone=user_data.phone,
+#         name=user_data.name
+#     )
+#     user_dict = user.dict()
+#     user_dict["password"] = hashed_password
+#     await db.users.insert_one(user_dict)
+#     # Create access token
+#     access_token = create_access_token(data={"sub": user.id})
+#     return Token(
+#         access_token=access_token,
+#         token_type="bearer",
+#         user=UserResponse(**user.dict())
+#     )
 
-@api_router.post("/auth/login", response_model=Token)
-async def login(user_data: UserLogin):
-    # Find user by email or phone
-    user = None
-    if is_valid_email(user_data.email_or_phone):
-        user = await db.users.find_one({"email": user_data.email_or_phone})
-    elif is_valid_phone(user_data.email_or_phone):
-        user = await db.users.find_one({"phone": user_data.email_or_phone})
-    else:
-        raise HTTPException(status_code=400, detail="Invalid email or phone format")
-    
-    if not user or not verify_password(user_data.password, user["password"]):
-        raise HTTPException(status_code=401, detail="Invalid credentials")
-    
-    # Create access token
-    access_token = create_access_token(data={"sub": user["id"]})
-    
-    return Token(
-        access_token=access_token,
-        token_type="bearer",
-        user=UserResponse(**user)
-    )
+# @api_router.post("/auth/login", response_model=Token)
+# async def login(user_data: UserLogin):
+#     # Find user by email or phone
+#     user = None
+#     if is_valid_email(user_data.email_or_phone):
+#         user = await db.users.find_one({"email": user_data.email_or_phone})
+#     elif is_valid_phone(user_data.email_or_phone):
+#         user = await db.users.find_one({"phone": user_data.email_or_phone})
+#     else:
+#         raise HTTPException(status_code=400, detail="Invalid email or phone format")
+#     if not user or not verify_password(user_data.password, user["password"]):
+#         raise HTTPException(status_code=401, detail="Invalid credentials")
+#     # Create access token
+#     access_token = create_access_token(data={"sub": user["id"]})
+#     return Token(
+#         access_token=access_token,
+#         token_type="bearer",
+#         user=UserResponse(**user)
+#     )
 
 @api_router.get("/auth/me", response_model=UserResponse)
 async def get_me(current_user: UserResponse = Depends(get_current_user)):
