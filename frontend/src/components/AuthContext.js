@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post(`${API}/auth/login`, {
         email_or_phone: emailOrPhone,
         password: password
-      });
+      }, { withCredentials: true });
       
       const { access_token, user: userData } = response.data;
       
