@@ -8,7 +8,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.10.0
       - key: MONGODB_URI
-        value: mongodb+srv://owenanderson:q1w2e3r4t5@owencluster.zf8ctxx.mongodb.net/?retryWrites=true&w=majority&tls=true
+        value: MONGODB_URI = "mongodb+srv://<user>:<pass>@cluster.mongodb.net/myDB?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
     plan: free
     rootDir: backend
     autoDeploy: true
