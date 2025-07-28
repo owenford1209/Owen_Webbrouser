@@ -20,7 +20,7 @@ services:
     startCommand: yarn global add serve && serve -s build -l 3000
     envVars:
       - key: NODE_VERSION
-        value: 21.0.0
+        value: 21.1.0
     plan: free
     rootDir: frontend
     autoDeploy: true 
