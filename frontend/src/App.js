@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./components/AuthContext";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
+// import LoginForm from "./components/LoginForm";
+// import RegisterForm from "./components/RegisterForm";
 import Dashboard from "./components/Dashboard";
 
 const AuthFlow = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   return isLogin ? (
-    <LoginForm onToggle={() => setIsLogin(false)} />
+    // <LoginForm onToggle={() => setIsLogin(false)} />
+    <div>Login Form</div>
   ) : (
-    <RegisterForm onToggle={() => setIsLogin(true)} />
+    // <RegisterForm onToggle={() => setIsLogin(true)} />
+    <div>Register Form</div>
   );
 };
 
