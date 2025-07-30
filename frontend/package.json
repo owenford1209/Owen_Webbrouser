@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://backend-ssk6.onrender.com",
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "axios": "^1.8.4",
