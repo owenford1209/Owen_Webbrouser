@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from './AuthContext';
+// Comment out useAuth for homepage-only flow
+// import { useAuth } from './AuthContext';
 import { HeartIcon, ChatBubbleLeftIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 
@@ -208,7 +209,8 @@ const PostItem = ({ post, onLike }) => {
 const ActivityFeed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
+  // Comment out useAuth for homepage-only flow
+  // const { user } = useAuth();
 
   useEffect(() => {
     fetchPosts();
@@ -262,9 +264,9 @@ const ActivityFeed = () => {
     <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Activity Feed</h2>
       
-      {user && (
+      {/* {user && (
         <CreatePost onPostCreated={handlePostCreated} />
-      )}
+      )} */}
       
       {posts.length === 0 ? (
         <div className="bg-white rounded-lg shadow-lg p-12 text-center">

@@ -3,6 +3,9 @@ import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaf
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
+// Comment out useAuth for homepage-only flow
+// import { useAuth } from './AuthContext';
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 

@@ -6,13 +6,8 @@ const API = `${BACKEND_URL}/api`;
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+// Comment out all login/signup/logout logic for homepage-only flow
+// export const useAuth = () => { throw new Error('useAuth must be used within an AuthProvider'); };
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -34,68 +29,68 @@ export const AuthProvider = ({ children }) => {
       setUser(response.data);
     } catch (error) {
       console.error('Failed to fetch user:', error);
-      logout();
+      // logout();
     } finally {
       setLoading(false);
     }
   };
 
-  const login = async (emailOrPhone, password) => {
-    try {
-      const response = await axios.post(`${API}/auth/login`, {
-        email_or_phone: emailOrPhone,
-        password: password
-      }, { withCredentials: true });
+  // const login = async (emailOrPhone, password) => {
+  //   try {
+  //     const response = await axios.post(`${API}/auth/login`, {
+  //       email_or_phone: emailOrPhone,
+  //       password: password
+  //     }, { withCredentials: true });
       
-      const { access_token, user: userData } = response.data;
+  //     const { access_token, user: userData } = response.data;
       
-      localStorage.setItem('token', access_token);
-      setToken(access_token);
-      setUser(userData);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+  //     localStorage.setItem('token', access_token);
+  //     setToken(access_token);
+  //     setUser(userData);
+  //     axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
       
-      return { success: true };
-    } catch (error) {
-      return { 
-        success: false, 
-        error: error.response?.data?.detail || 'Login failed' 
-      };
-    }
-  };
+  //     return { success: true };
+  //   } catch (error) {
+  //     return { 
+  //       success: false, 
+  //       error: error.response?.data?.detail || 'Login failed' 
+  //     };
+  //   }
+  // };
 
-  const register = async (userData) => {
-    try {
-      const response = await axios.post(`${API}/auth/register`, userData);
+  // const register = async (userData) => {
+  //   try {
+  //     const response = await axios.post(`${API}/auth/register`, userData);
       
-      const { access_token, user: userInfo } = response.data;
+  //     const { access_token, user: userInfo } = response.data;
       
-      localStorage.setItem('token', access_token);
-      setToken(access_token);
-      setUser(userInfo);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+  //     localStorage.setItem('token', access_token);
+  //     setToken(access_token);
+  //     setUser(userInfo);
+  //     axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
       
-      return { success: true };
-    } catch (error) {
-      return { 
-        success: false, 
-        error: error.response?.data?.detail || 'Registration failed' 
-      };
-    }
-  };
+  //     return { success: true };
+  //   } catch (error) {
+  //     return { 
+  //       success: false, 
+  //       error: error.response?.data?.detail || 'Registration failed' 
+  //     };
+  //   }
+  // };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-    setUser(null);
-    delete axios.defaults.headers.common['Authorization'];
-  };
+  // const logout = () => {
+  //   localStorage.removeItem('token');
+  //   setToken(null);
+  //   setUser(null);
+  //   delete axios.defaults.headers.common['Authorization'];
+  // };
 
   const value = {
     user,
     token,
-    login,
-    register,
-    logout,
+    // login,
+    // register,
+    // logout,
     loading
   };
 
@@ -105,3 +100,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+// export { useAuth };

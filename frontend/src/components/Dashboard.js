@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
+// import { useAuth } from './AuthContext';
 import InteractiveMap from './InteractiveMap';
 import ActivityFeed from './ActivityFeed';
 import HouseSearch from './HouseSearch';
@@ -15,7 +15,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, setIsOpen }) => {
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const navigation = [
     { name: 'Overview', icon: HomeIcon, id: 'overview' },
@@ -82,7 +82,7 @@ const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, setIsOpen }) => {
           
           <div className="border-t border-gray-200 p-4">
             <div className="flex items-center mb-4">
-              {user.profile_image ? (
+              {/* {user.profile_image ? (
                 <img
                   className="h-10 w-10 rounded-full object-cover"
                   src={user.profile_image}
@@ -94,19 +94,19 @@ const Sidebar = ({ activeTab, setActiveTab, isMobile, isOpen, setIsOpen }) => {
                     {user.name.charAt(0).toUpperCase()}
                   </span>
                 </div>
-              )}
+              )} */}
               <div className="ml-3 flex-1">
-                <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                <p className="text-xs text-gray-500">{user.email || user.phone}</p>
+                <p className="text-sm font-medium text-gray-900">Welcome, User</p>
+                <p className="text-xs text-gray-500">user@example.com</p>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={logout}
               className="w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
             >
               <ArrowRightOnRectangleIcon className="mr-3 h-5 w-5" />
               Sign out
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -355,7 +355,7 @@ const Overview = () => {
 };
 
 const Profile = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   
   return (
     <div className="space-y-6">
@@ -363,7 +363,7 @@ const Profile = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Profile Settings</h2>
         
         <div className="flex items-center space-x-6 mb-8">
-          {user.profile_image ? (
+          {/* {user.profile_image ? (
             <img
               className="h-24 w-24 rounded-full object-cover"
               src={user.profile_image}
@@ -375,13 +375,10 @@ const Profile = () => {
                 {user.name.charAt(0).toUpperCase()}
               </span>
             </div>
-          )}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">{user.name}</h3>
-            <p className="text-gray-600">{user.email || user.phone}</p>
-            <p className="text-sm text-gray-500">
-              Member since {new Date(user.created_at).toLocaleDateString()}
-            </p>
+          )} */}
+          <div className="ml-3 flex-1">
+            <p className="text-sm font-medium text-gray-900">Welcome, User</p>
+            <p className="text-xs text-gray-500">user@example.com</p>
           </div>
         </div>
 
@@ -392,7 +389,7 @@ const Profile = () => {
             </label>
             <input
               type="text"
-              value={user.name}
+              value="John Doe"
               disabled
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
             />
@@ -404,7 +401,7 @@ const Profile = () => {
             </label>
             <input
               type="email"
-              value={user.email || 'Not provided'}
+              value="john.doe@example.com"
               disabled
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
             />
@@ -416,7 +413,7 @@ const Profile = () => {
             </label>
             <input
               type="tel"
-              value={user.phone || 'Not provided'}
+              value="(123) 456-7890"
               disabled
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
             />
@@ -428,7 +425,7 @@ const Profile = () => {
             </label>
             <input
               type="text"
-              value={user.id}
+              value="123456789"
               disabled
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500 text-xs"
             />
